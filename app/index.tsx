@@ -1,52 +1,76 @@
-import { Image, Text, View } from "react-native";
+import ProductItem from "@/components/ProductItem";
+import React from "react";
+import { Image, ScrollView, StyleSheet, Text } from "react-native";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
+  const products = [
+    {
+      cookieName: "Brown cookie",
+      newImageUrl:
+        "https://preppykitchen.com/wp-content/uploads/2021/08/Double-Chocolate-Chip-Cookies-Recipe-500x500.jpg",
+      productPrice: "3.99$",
+    },
+    {
+      cookieName: "Salty Pistachio cookie",
+      newImageUrl:
+        "https://teakandthyme.com/wp-content/uploads/2024/12/pistachio-cream-cookies-DSC_3367-1x1-1200.jpg",
+      productPrice: "3.99$",
+    },
+    {
+      cookieName: "Kinder cookie",
+      newImageUrl:
+        "https://www.janespatisserie.com/wp-content/uploads/2020/07/IMG_4770-2.jpg",
+      productPrice: "5.99$",
+    },
+    {
+      cookieName: "Monster cookie",
+      newImageUrl:
+        "https://sweetlycakes.com/wp-content/uploads/2023/12/cookiemonstercookies-12-1.jpg",
+      productPrice: "4.99$",
+    },
+  ];
 
-        alignItems: "center",
-      }}
-    >
-      <Text style={{ fontSize: 24, fontWeight: `bold` }}>My Cockie Store</Text>
-      <Text>Where the best Cockies are made.</Text>
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>🍪 My Cookie Store</Text>
+      <Text style={styles.subtitle}>Where the best cookies are made.</Text>
+
       <Image
         source={{
-          uri: `https://img.youm7.com/ArticleImgs/2017/7/13/73264-%D8%B7%D8%B1%D9%8A%D9%82%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%83%D9%8A%D8%B2.jpg`,
+          uri: "https://img.youm7.com/ArticleImgs/2017/7/13/73264-%D8%B7%D9%81%D9%84.jpg",
         }}
-        style={{ width: 200, height: 200 }}
+        style={styles.bannerImage}
       />
-      <View
-        style={{
-          padding: 15,
-          width: 400,
 
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <View>
-          <Image
-            source={{
-              uri: `https://media-cdn.tripadvisor.com/media/photo-s/13/e8/56/35/cockies-vegan.jpg`,
-            }}
-            style={{ width: 150, height: 150 }}
-          />
-          <Text style={{ fontWeight: `bold` }}>Salty Pistasio Cockie </Text>
-          <Text>3.99$</Text>
-        </View>
-        <View>
-          <Image
-            source={{
-              uri: `https://preppykitchen.com/wp-content/uploads/2021/08/Double-Chocolate-Chip-Cookies-Recipe-500x500.jpg`,
-            }}
-            style={{ width: 150, height: 150 }}
-          />
-          <Text style={{ fontWeight: `bold` }}>Brown choclate Cockie </Text>
-          <Text>3.99$</Text>
-        </View>
-      </View>
-    </View>
+      {products.map((product, index) => (
+        <ProductItem
+          key={index}
+          cookieName={product.cookieName}
+          newImageUrl={product.newImageUrl}
+          productPrice={product.productPrice}
+        />
+      ))}
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  subtitle: {
+    marginBottom: 10,
+  },
+  bannerImage: {
+    width: 200,
+    height: 200,
+    marginBottom: 15,
+    borderRadius: 10,
+  },
+});
