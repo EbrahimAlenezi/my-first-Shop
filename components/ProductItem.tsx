@@ -7,7 +7,7 @@ interface ProductItemProps {
   productPrice: string;
 }
 
-const ProductItem = (props: ProductItemProps) => {
+export default function ProductItem(props: ProductItemProps) {
   return (
     <View style={styles.card}>
       <Image source={{ uri: props.newImageUrl }} style={styles.image} />
@@ -15,34 +15,23 @@ const ProductItem = (props: ProductItemProps) => {
       <Text style={styles.price}>{props.productPrice}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   card: {
-    alignItems: "center",
+    width: 280,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 12,
     marginVertical: 10,
-    backgroundColor: "#f8f8f8",
-    padding: 10,
-    borderRadius: 10,
-    width: 200,
+    alignItems: "center",
     shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
     elevation: 3,
   },
-  image: {
-    width: 150,
-    height: 100,
-    borderRadius: 8,
-  },
-  name: {
-    marginTop: 8,
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  price: {
-    color: "#555",
-  },
+  image: { width: "100%", height: 150, borderRadius: 8 },
+  name: { marginTop: 10, fontSize: 16, fontWeight: "600" },
+  price: { marginTop: 4, fontSize: 14, opacity: 0.7 },
 });
-
-export default ProductItem;
